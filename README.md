@@ -9,13 +9,15 @@ Primary issues:
 
 Set Up Windows System:
 1. Install VirtualBox
-2. Create an Ubuntu 20.04 VirtualBox instance (latest stable?)
+2. [Create an Ubuntu 20.04 VirtualBox instance (latest stable?)](https://www.youtube.com/watch?v=rJ9ysibH768&ab_channel=GEEKrar)
    * Select `Skip Unattended Installation`
    * 2 CPU/4GB Memory
    * 25GiB Disk - FIXED
    * Enable EFI (helps with video display)
 3. Watched the following video to (finally) get jupyter working: [How to Setup Jupyter Notebook in Any Cloud Server in under 7 minutes! - Ubuntu 20.04](https://www.youtube.com/watch?v=Dq1phGV-7fI&ab_channel=TheLinuxOS)
-4. Installation (Shell Steps):    
+4. [Install Guest Additions on Guest (Ubuntu)](https://www.youtube.com/watch?v=zdkl16oAS1k&ab_channel=ProgrammingKnowledge2)
+5. [VirtualBox Port Forwarding](https://www.youtube.com/watch?v=SK_7AhHNZ0M&ab_channel=Abstractprogrammer)
+5. Installation (Shell Steps):    
    ```shell
     sudo apt-get update -y
     sudo apt-get upgrade -y
@@ -31,6 +33,6 @@ Set Up Windows System:
     jupyter notebook --generate-config
     ```
 
-5. Run Jupyter! `jupyter notebook`
+6. Run Jupyter! `jupyter notebook`
 
-## PySpark
+## Install PySpark
