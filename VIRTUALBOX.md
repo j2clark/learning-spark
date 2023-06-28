@@ -56,7 +56,7 @@ Step through the Installation Dialogs, paying closer attention to the following:
 
 When asked select `Restart Now` (and `press ENTER` when asked) and complete final installation questions
 
-### Install Guest Additions
+## Install Guest Additions
 
 Guest Additions help with scaling display plus provides copy/paste between host and guest machines
 
@@ -138,7 +138,13 @@ You should see your notebook `test.ipynb` listed.
 
 For visual learners, here is a short video on [Installing Spark](https://www.youtube.com/watch?v=YanzUI-30pI&ab_channel=BigTechTalk)
 
-### The EASY installation method is simply:
+### Install Java
+```shell
+sudo apt update
+sudo apt install -y default-jdk
+```
+
+### Install PySpark
 ```shell
 pip install pyspark
 ```
@@ -341,3 +347,72 @@ From the Host machine, open a browser and enter [http://127.0.0.1:8888](http://1
 You will be prompted for the password you just generated for the config
 
 You should now have access to the notebooks on the Ubuntu instance
+
+## Shared Folders
+
+Guest Additions must already be installed to share Host files to a Guest instance. Instructions can be found above: [Install Guest Additions](#install-guest-additions) 
+
+Additionally, the user account on the guest machine must be modified to belong to the group `vboxsf`
+
+### Add group `vboxsf` to guest user account
+Open a terminal on the Guest machine and execute:
+```shell
+sudo usermod -aG vboxsf $USER
+```
+
+Restart the computer for the changes to take effect.
+
+A good explanation on permissions can be found on [AskUbuntu](https://askubuntu.com/questions/161759/how-to-access-a-shared-folder-in-virtualbox)
+
+### Add a Shared Folder
+
+From within the Guest Machine (Ubuntu), select `Devices > Shared Folders > Shard Folder Settings...`
+
+Add a new entry (green `+` on the right)
+* Folder Path: Select `Other`
+* Navigate to and select the folder on the Host machine to be shared
+* No mount point name is necessary, we will manually mount the folder later on
+* Select `Auto Mount` and `Make Permanent`
+* Select OK to save
+
+Open a Terminal to create a mount location and mount the folder
+```shell
+mkdir ~/host_files
+sudo mount -t vboxsf -o uid=1000,gid=1000 share_folder ~/host_files
+```
+
+## Enable VirtualBox SSH
+
+[Enable SSH on Ubuntu 22.04](https://ubuntuhandbook.org/index.php/2022/04/enable-ssh-ubuntu-22-04/#SnippetTab)
+
+```shell
+sudo apt install ssh
+```
+
+Verify running:
+```shell
+systemctl status sshd.service
+```
+
+If not running, execute:
+```shell
+sudo systemctl enable sshd && sudo systemctl start sshd
+```
+
+Add a Port Forwarding rule for SSH
+
+From the Machine Menu select `Devices > Network > Network Settings...`
+
+Under Adapter 1, select Advanced > Port Forwarding
+
+Add a new rule (the green + on the right)
+
+| Name  | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
+|-------|----------|-----------|-----------|-----------|------------|
+| SSH   | TCP      |  | 2222      |  | 22         |
+
+Click OK to save and close, OK again to close Network dialog
+
+From Putty, connect to: `<username>@127.0.0.1`, port `2222`
+
+
