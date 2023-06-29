@@ -13,6 +13,25 @@ Finally, we create some port forwarding entries to enable access to Jupyter and 
 
 [Download](https://www.virtualbox.org/wiki/Downloads) and install the latest VirtualBox release. 7.0 at the time this was written.
 
+VirtualBox on windows requires Python and `Python Core and the win32api bindings`
+
+For the most part I have found this to go smoothly, but I did have one issue on a Windows 10 box.
+
+The very common error `Missing Core Python and win32api`
+
+In almost all cases a simple `pip install pywin32` solved the problem, but on one machine it required some manipulation to get working:
+
+* I completely removed python from the OS, restarted, and Reinstalled the latest Python version. See my instructions on [Installing Python on Windows](https://github.com/j2clark/learning-python/blob/main/WINDOWS_INSTALL.md)
+* [Download latest Python](https://www.python.org/downloads/)
+* Select `Add python.exe To PATH` (THIS IS MOST IMPORTANT PART)
+* Custom install to location `C:\Users\<username>\Python\Python311`
+* Install pywin32
+```shell
+pip install pywin32
+```
+* Install VirtualBox - warning no longer there
+
+
 ## Ubuntu 22.04 LTS
 
 [Download](https://ubuntu.com/download/desktop) Ubuntu Desktop 22.04 LTS 
