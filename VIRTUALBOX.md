@@ -402,6 +402,10 @@ sudo mount -t vboxsf -o uid=1000,gid=1000 share_folder ~/host_files
 
 ## Enable VirtualBox SSH
 
+I had some issues setting this up several times - not clear what order of operations causes this. 
+One suspect is `sudo apt upgrade`
+Another is accidentally changing Network Settings 
+
 [Enable SSH on Ubuntu 22.04](https://ubuntuhandbook.org/index.php/2022/04/enable-ssh-ubuntu-22-04/#SnippetTab)
 
 ```shell
