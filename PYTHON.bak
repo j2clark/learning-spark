@@ -1,0 +1,77 @@
+# Install-python-on-Windows
+
+Using CMDR for windows for Shell like experience 
+
+A very useful video explaining everything below can be found [here](https://www.youtube.com/watch?v=28eLP22SMTA&ab_channel=PythonProgrammer)
+
+## Install Python 
+
+Create a new directory where all versions of python are to be installed:
+```shell
+mkdir C:\Users|<username>\python 
+```
+
+Download desired python version (e.g. 3.11.4 Latest) from [python.org](https://www.python.org/downloads/)
+
+Open file to begin installation.
+* Do NOT select Add to Path
+* Select Customize Installation
+* Leave Optional Features defaults and Select Next
+* Under Customize install location, enter the custom location: `C:\Users\<username>\python\python-3.11.4`
+* Install 
+
+## Create Virtual Environment 
+
+Create a directory for a Python project
+```shell
+mkdir C:\Users|<username>\python-project
+cd C:\Users|<username>\python-project
+```
+
+Create a virtual environment inside python project folder.
+Note: we should create a virtual environments for each project.
+```shell
+cd C:\Users|<username>\python-project
+C:\Users\<username>\python\python-3.11.4\python -m venv my_3_11_env
+```
+
+## Activate a Virtual Environment
+
+To Activate this environment (Windows):
+```shell
+cd C:\Users|<username>\python-project
+my_3_11_env\Scripts\activate
+```
+
+Once activated, shell should look like:
+CMDR:
+```shell
+(my_3_11_env) λ
+```
+
+Windows Command Prompt:
+```shell
+(my_3_11_env) C:\Users\<username>\python-project>
+```
+
+## Deactivate a Virtual Environment
+
+To Deactivate:
+```shell
+(my_3_11_env) λ deactivate
+```
+
+## Adding modules to virtual environment
+Import module into virtual environment:
+```shell
+cd C:\Users|<username>\python-project
+my_3_11_env\Scripts\activate
+(my_3_11_env) λ pip install numpy as np
+```
+
+
+## PyCharm Virtual Environments
+
+A quick overview can be found at [PyCharm Virtual Environments (venv) Explained!](https://www.youtube.com/watch?v=2P30W3TN4nI&ab_channel=MaxTeachesTech)
+
+

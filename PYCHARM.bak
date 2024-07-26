@@ -1,0 +1,64 @@
+# Pycharm configurations
+
+## Configure PyCharm to Use VirtualBox for Execution
+
+A good video on configuring [Remote Interpreters](https://www.youtube.com/watch?v=6RlgQBB1UDU&ab_channel=PyCharmbyJetBrains)
+
+SSH Access must be enabled on VirtualBox.
+
+See [VIRTUALBOX.md: Enable VirtualBox SSH](./VIRTUALBOX.md#enable-virtualbox-ssh)
+
+On the VirtualBox, create a location where project files are to be uploaded:
+```shell
+mkdir ~/python-runtime
+```
+
+On the Host Machine, Create a new PyCharm project:
+Select the project location, then under Python Interpreter select Previously Configured Interpreter:
+Click on `Add Interpreter`, and select `On SSH...`
+
+Note: You only need to create one SSH connection per VirtualBox SSH config (server/port/user), and it can be reused across projects 
+
+Host: `127.0.0.1`
+Port: `2222`
+Username: `<username>`
+
+Password: `******`
+Select `Save Password`
+
+Next page validates connection
+
+Select Virtual Environment on the left panel
+Select `New` for Environment
+Specify the location: `/home/<username>/<projectname>_env`
+Specify the base interpreter (System python selected by default): `/usr/bin/python3`
+Click on `Create` to create remote interpreter
+
+Finish Creating the project.
+
+On opening of project, I get a popup telling me project is out of sync, and do I want to auto-sync - select auto-sync
+
+Select Menu `Tools > Deployment > Configuration`
+
+Select the Mapping Tab
+Local Path should be your project files
+Deployment Path is where you want local files to be uploaded to VirtualBox
+Deployment Path: `/home/<username>/python-runtime`
+Click OK to save and close
+
+Select Menu `Tools > Deployment > Automatic Upload`
+
+Try running a file.
+
+If it fails with File not found, 
+
+Select Menu `Tools > Deployment > Upload to <username>@127.0.0.1:2222`
+
+Confirm and run again.
+
+Modify the file and run again - changes should be automatically updated
+
+## Installing packages to SSH Host venv
+
+
+
