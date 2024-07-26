@@ -11,7 +11,8 @@ def split_line(line):
     return (customer_id, amount)
 
 
-lines = sc.textFile("file:///C:/Users/j2cla/git/learning-spark/udemy/taming-big-data/customer-orders.csv")
+# lines = sc.textFile("file:///C:/Users/j2cla/git/learning-spark/udemy/taming-big-data/customer-orders.csv")
+lines = sc.textFile("customer-orders.csv")
 orders = lines.map(split_line)
 customerOrders = orders.reduceByKey(lambda x, y: x + y)
 sortedBySpend = customerOrders.sortBy(lambda x: x[1], ascending=False)

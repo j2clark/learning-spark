@@ -13,7 +13,8 @@ def split_line(line):
     return (customer_id, (amount, 1))
 
 
-lines = sc.textFile("file:///C:/Users/j2cla/git/learning-spark/udemy/taming-big-data/customer-orders.csv")
+# lines = sc.textFile("file:///C:/Users/j2cla/git/learning-spark/udemy/taming-big-data/customer-orders.csv")
+lines = sc.textFile("customer-orders.csv")
 orders = lines.map(split_line)
 customerOrders = orders.reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
 # print(customerOrders.collect())
